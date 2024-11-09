@@ -17,13 +17,13 @@ const getInitialToDos = () => JSON.parse(localStorage.getItem("todos")) || [];
   }
 
    return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-l from-blue-600 to-emerald-400">
-    <div className="bg-white shadow-lg rounded-3xl p-16">
-      <div className=" flex flex-row">
+    <div className="min-h-screen m flex items-center justify-center bg-gradient-to-l from-blue-600 to-emerald-400">
+    <div className="bg-white  shadow-lg rounded-3xl md:p-16">
+      <div className=" flex flex-row ">
       <img className="w-10 h-10" src={no} alt="" />
-      <h1 className="text-3xl font-bold text-center text-gray-900 mb-6 font-serif">Todo List</h1>
+      <h1 className="text-3xl font-bold text-center text-gray-900 mb-2 md:7 font-serif">Todo List</h1>
       </div>
-      <div className="mb-4 flex rounded">
+      <div className="m-4 flex rounded">
         <input value={input} onChange={(e) => setInput(e.target.value)} type="text" placeholder="Add a new todo" className="flex-grow px-3 py-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500"/>
         <button onClick={addTodo} className="bg-blue-500 text-white px-4 py-2 rounded-r-full hover:bg-blue-800 flex-grow">Add</button>
       </div>
