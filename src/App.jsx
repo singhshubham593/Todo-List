@@ -1,11 +1,14 @@
-import React, { useState} from 'react'
+import React, { useState, useEffect} from 'react'
+import no from '../src/assets/no.png'
 
- 
+const getInitialToDos = () => JSON.parse(localStorage.getItem("todos")) || []; 
  
  const App = () => {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(getInitialToDos);
   const [input, setInput] = useState("");
-
+  
+  useEffect(() => { localStorage.setItem("todos", JSON.stringify(todos)); }, [todos]); 
+  
   const addTodo = () => {
     if(input.trim()){
       setTodos([...todos, {id: Date.now(), text:input, completed:false}])
@@ -14,10 +17,13 @@ import React, { useState} from 'react'
   }
 
    return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-600 to-emerald-400">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-l from-blue-600 to-emerald-400">
     <div className="bg-white shadow-lg rounded-3xl p-16">
-      <h1 className="text-3xl font-bold text-center text-gray-900 mb-6">REACT TODO LIST</h1>
-      <div className="mb-4 flex">
+      <div className=" flex flex-row">
+      <img className="w-14 h-12" src={no} alt="" />
+      <h1 className="text-3xl font-bold text-center text-gray-900 mb-6">TODO LIST</h1>
+      </div>
+      <div className="mb-4 flex rounded-full">
         <input value={input} onChange={(e) => setInput(e.target.value)} type="text" placeholder="Add a new todo" className="flex-grow px-3 py-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500"/>
         <button onClick={addTodo} className="bg-blue-500 text-white px-4 py-2 rounded-r-lg hover:bg-blue-800 flex-grow">Add</button>
       </div>
